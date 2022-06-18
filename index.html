@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Todo list</title>
+        <link href="./css/main.css" rel="stylesheet">
+	    <link href="./css/bootstrap.min.css" rel="stylesheet">
+    </head>
+    <body class="bg-dark">
+    <div class="container">
+    	<h2 class="text-center text-white">Todo List App</h2>
+            <hr class="bg-light">
+        	<div class="form-group">
+                <div class="row">
+                    
+                    <div class="col-6">
+                        <input type="text" class="form-control" id="itemInput" placeholder="Enter Task Title Here ">
+                    </div>
+                    <div class="col-6 form-group">
+                        <input  class="btn bg-white form-control-sm" value="harshil" />
+                        <select class="btn form-control-sm  bg-light">
+                            <option>Select Priority</option>
+                            <option>High - ⏫</option>
+                            <option>Med - ➖</option>
+                            <option>Low - ⏬</option>
+                        </select>
+                    </div>
+
+                    <hr>
+                    
+                    <div class="col-6">
+                        <textarea  class="form-control" style="min-width: 100%" id="itemDetailsInput" placeholder="Enter Task More Details Here (Optional) "></textarea>
+                    </div>
+                    <div class="col-6 form-group">
+                        <input  class="btn btn-sm bg-light form-control-sm" type="text" placeholder="Start Date" onfocus="(this.type='datetime-local')" />
+                        <input  class="btn btn-sm bg-light form-control-sm" type="text" placeholder="End Date" onfocus="(this.type='datetime-local')" />
+                    </div>
+
+                </div>
+        	</div>
+            <hr class="bg-info">
+            <div class="row mt-2">
+                <div class="col-12">
+                    <button id="addButton" class="btn btn-primary mt-1">➕ Add To List</button>
+                    <button id="clearButton" class="btn btn-danger mt-1">⛔ Clear Todo List</button>
+                </div>
+            </div>
+        <hr class="bg-danger">
+        <h3 class="text-warning mt-2">Todo List</h3>
+        <hr class="bg-warning">
+        <ul id="todoList" class="container">
+        </ul>
+    </div>
+    <script type="text/javascript" src="js/main.js"></script>
+    <script src = "js/jquery-1.10.2.js"></script>
+    <script src = "js/jquery-ui.js"></script>
+    <script>
+     $(function() {
+        $("#todoList").sortable({
+            start: function(event, ui) {
+                var start_pos = ui.item.index();
+                ui.item.data('start_pos', start_pos);
+            },
+            update: function(event, ui) {
+                var arr_pos_start = ui.item.data('start_pos');
+                var arr_pos_end = ui.item.index();
+                
+                listArray = moveArrayItemToNewIndex(listArray,arr_pos_start,arr_pos_end);
+                refreshLocal();
+            }
+        });
+     });
+  </script>
+  </body>
+</html>
