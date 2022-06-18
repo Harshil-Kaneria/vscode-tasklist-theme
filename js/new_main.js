@@ -91,6 +91,51 @@ function remove(id=""){
     
 }
 
+function update_priority(id,value){
+    MainDataArray.forEach(function(item){
+        if(item.id==id){
+            item.priority = value;
+        }
+    })
+    Update_Main_Data_File()
+}
+
+function update_status(id,value){
+    MainDataArray.forEach(function(item){
+        if(item.id==id){
+            item.status = value;
+        }
+    })
+    Update_Main_Data_File()
+}
+
+function update_tag(id,value){
+    MainDataArray.forEach(function(item){
+        if(item.id==id){
+            item.tag = value;
+        }
+    })
+    Update_Main_Data_File()
+}
+
+function update_start_date(id,value){
+    MainDataArray.forEach(function(item){
+        if(item.id==id){
+            item.start_date = value;
+        }
+    })
+    Update_Main_Data_File()
+}
+
+function update_end_date(id,value){
+    MainDataArray.forEach(function(item){
+        if(item.id==id){
+            item.end_date = value;
+        }
+    })
+    Update_Main_Data_File()
+}
+
 function Update_Main_Data_File(){
 
     var data = MainDataArray;
@@ -131,13 +176,13 @@ function generate_html_of_list(ele){
                     <label><b>${ele.title}</b></label>
                 </div>
                 <div class="form-group d-flex">
-                    <select class="btn btn-sm form-control-sm bg-light">
+                    <select onChange="update_status(${ele.id},this.options[this.selectedIndex].value)" class="btn btn-sm form-control-sm bg-light">
                         <option ${ele.status=="1"?'Selected':''} value="1">Complete - ✔️</option>
-                        <option ${ele.status=="2"?'Selected':''} value="2">InProgress - 🚀</option>
-                        <option ${ele.status=="3"?'Selected':''} value="3">Incomplete - ⌛</option>
+                        <option ${ele.status=="2"?'Selected':''} value="2">In Progress - 🚀</option>
+                        <option ${ele.status=="3"?'Selected':''} value="3">In Complete - ⌛</option>
                         <option ${ele.status=="4"?'Selected':''} value="4">Hold - 🛑</option>
                     </select>
-                    <input  class="btn btn-sm bg-white form-control-sm" value="${ele.tag}" />
+                    <input onchange="update_tag(${ele.id},this.value)"  class="btn btn-sm bg-white form-control-sm" value="${ele.tag}" />
                     <button class="btn btn-primary" onclick="edit(${ele.id})">📝</button>
                     <button class="btn btn-danger" onclick="remove(${ele.id})">❌</button>
                 </div>
@@ -147,14 +192,14 @@ function generate_html_of_list(ele){
                     <label>${ele.description}</label>
                 </div>
                 <div class="form-group d-flex">
-                    <select class="btn btn-sm form-control-sm bg-light">
+                    <select onChange="update_priority(${ele.id},this.options[this.selectedIndex].value)" class="btn btn-sm form-control-sm bg-light">
                         <option ${ele.priority==""?'Selected':''} value="">Select Priority</option>
                         <option ${ele.priority=="3"?'Selected':''} value="3">High - ⏫</option>
                         <option ${ele.priority=="2"?'Selected':''} value="2">Med - ➖</option>
                         <option ${ele.priority=="1"?'Selected':''} value="1">Low - ⏬</option>
                     </select>
-                    <input  class="btn btn-sm bg-light form-control-sm" type="${ele.start_date!=""?"datetime-local":"text"}" placeholder="Start Date" value="${ele.start_date}" onclick="(this.type='datetime-local');this.showPicker()" />
-                    <input  class="btn btn-sm bg-light form-control-sm" type="${ele.end_date!=""?"datetime-local":"text"}" placeholder="End Date" value="${ele.end_date}" onclick="(this.type='datetime-local');this.showPicker()" />
+                    <input  class="btn btn-sm bg-light form-control-sm" type="${ele.start_date!=""?"datetime-local":"text"}" placeholder="Start Date" value="${ele.start_date}" onclick="(this.type='datetime-local');this.showPicker()" onchange="update_start_date(${ele.id},this.value)" />
+                    <input  class="btn btn-sm bg-light form-control-sm" type="${ele.end_date!=""?"datetime-local":"text"}" placeholder="End Date" value="${ele.end_date}" onclick="(this.type='datetime-local');this.showPicker()" onchange="update_end_date(${ele.id},this.value)" />
                 </div>
             </div>
         </li>
