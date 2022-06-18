@@ -176,7 +176,7 @@ var createItemDom = function(text,status,details,id){
                 <label>${id}</label>
             </div>
             <div class="col-12 d-flex main_heading_task_list">
-                <div class="col-6">
+                <div class="col-5">
                     <label><b>${text}</b></label>
                 </div>
                 <div class="form-group d-flex">
@@ -192,7 +192,7 @@ var createItemDom = function(text,status,details,id){
                 </div>
             </div>
             <div class="mt-3 col-12 d-flex main_description_task_list">
-                <div class="col-6">
+                <div class="col-5">
                     <label>${details}</label>
                 </div>
                 <div class="form-group d-flex">
@@ -202,8 +202,8 @@ var createItemDom = function(text,status,details,id){
                         <option>Med - ➖</option>
                         <option>Low - ⏬</option>
                     </select>
-                    <input  class="btn btn-sm bg-light form-control-sm" type="text" placeholder="Start Date" onfocus="(this.type='datetime-local')" />
-                    <input  class="btn btn-sm bg-light form-control-sm" type="text" placeholder="End Date" onfocus="(this.type='datetime-local')" />
+                    <input  class="btn btn-sm bg-light form-control-sm" type="text" placeholder="Start Date" onclick="(this.type='datetime-local');this.showPicker()" />
+                    <input  class="btn btn-sm bg-light form-control-sm" type="text" placeholder="End Date" onclick="(this.type='datetime-local');this.showPicker()" />
                 </div>
             </div>
         </li>
@@ -280,4 +280,21 @@ document.getElementById("itemInput").addEventListener("keyup", function(event) {
     if (event.keyCode === 13) {
         addButton.click();
     }
+});
+
+
+$(function() {
+    $("#todoList").sortable({
+        start: function(event, ui) {
+            var start_pos = ui.item.index();
+            ui.item.data('start_pos', start_pos);
+        },
+        update: function(event, ui) {
+            var arr_pos_start = ui.item.data('start_pos');
+            var arr_pos_end = ui.item.index();
+            
+            listArray = moveArrayItemToNewIndex(listArray,arr_pos_start,arr_pos_end);
+            refreshLocal();
+        }
+    });
 });

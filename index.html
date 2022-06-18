@@ -7,6 +7,7 @@
         <title>Todo list</title>
         <link href="./css/main.css" rel="stylesheet">
 	    <link href="./css/bootstrap.min.css" rel="stylesheet">
+        <link href="./css/jquery-confirm.css" rel="stylesheet">
     </head>
     <body class="bg-dark">
     <div class="container">
@@ -16,26 +17,32 @@
                 <div class="row">
                     
                     <div class="col-6">
-                        <input type="text" class="form-control" id="itemInput" placeholder="Enter Task Title Here ">
+                        <input type="text" class="form-control" id="title_text" placeholder="Enter Task Title Here ">
                     </div>
                     <div class="col-6 form-group">
-                        <input  class="btn bg-white form-control-sm" value="harshil" />
-                        <select class="btn form-control-sm  bg-light">
-                            <option>Select Priority</option>
-                            <option>High - ⏫</option>
-                            <option>Med - ➖</option>
-                            <option>Low - ⏬</option>
+                        <input  class="btn bg-white form-control-sm" id="tag_text" value="" placeholder="Tag (Optional)" />
+                        <select id="priority_id" class="btn form-control-sm  bg-light">
+                            <option value=""  selected>Select Priority</option>
+                            <option value="3" >High - ⏫</option>
+                            <option value="2" >Med - ➖</option>
+                            <option value="1" >Low - ⏬</option>
+                        </select>
+                        <select id="status_id" class="btn form-control-sm bg-light">
+                            <option value="1">Complete - ✔️</option>
+                            <option value="2">InProgress - 🚀</option>
+                            <option value="3" selected>Incomplete - ⌛</option>
+                            <option value="4">Hold - 🛑</option>
                         </select>
                     </div>
 
                     <hr>
                     
                     <div class="col-6">
-                        <textarea  class="form-control" style="min-width: 100%" id="itemDetailsInput" placeholder="Enter Task More Details Here (Optional) "></textarea>
+                        <textarea  class="form-control" style="min-width: 100%" id="description_text" placeholder="Enter Task More Details Here (Optional) "></textarea>
                     </div>
                     <div class="col-6 form-group">
-                        <input  class="btn btn-sm bg-light form-control-sm" type="text" placeholder="Start Date" onfocus="(this.type='datetime-local')" />
-                        <input  class="btn btn-sm bg-light form-control-sm" type="text" placeholder="End Date" onfocus="(this.type='datetime-local')" />
+                        <input id="start_date" class="btn btn-sm bg-light form-control-sm" type="text" placeholder="Start Date (Optional)" onclick="(this.type='datetime-local');this.showPicker()"/>
+                        <input id="end_date" class="btn btn-sm bg-light form-control-sm" type="text" placeholder="End Date (Optional)" onclick="(this.type='datetime-local');this.showPicker()"/>
                     </div>
 
                 </div>
@@ -43,8 +50,8 @@
             <hr class="bg-info">
             <div class="row mt-2">
                 <div class="col-12">
-                    <button id="addButton" class="btn btn-primary mt-1">➕ Add To List</button>
-                    <button id="clearButton" class="btn btn-danger mt-1">⛔ Clear Todo List</button>
+                    <button onclick="add_item_list()" class="btn btn-primary mt-1">➕ Add To List</button>
+                    <button onclick="clear_full_list()" class="btn btn-danger mt-1">⛔ Clear Todo List</button>
                 </div>
             </div>
         <hr class="bg-danger">
@@ -53,25 +60,9 @@
         <ul id="todoList" class="container">
         </ul>
     </div>
-    <script type="text/javascript" src="js/main.js"></script>
-    <script src = "js/jquery-1.10.2.js"></script>
-    <script src = "js/jquery-ui.js"></script>
-    <script>
-     $(function() {
-        $("#todoList").sortable({
-            start: function(event, ui) {
-                var start_pos = ui.item.index();
-                ui.item.data('start_pos', start_pos);
-            },
-            update: function(event, ui) {
-                var arr_pos_start = ui.item.data('start_pos');
-                var arr_pos_end = ui.item.index();
-                
-                listArray = moveArrayItemToNewIndex(listArray,arr_pos_start,arr_pos_end);
-                refreshLocal();
-            }
-        });
-     });
-  </script>
-  </body>
+    <script src = "./js/jquery-1.10.2.js"></script>
+    <script src = "./js/jquery-ui.js"></script>
+    <script src = "./js/jquery-confirm.js"></script>
+    <script type="text/javascript" src="./js/new_main.js"></script>
+    </body>
 </html>
