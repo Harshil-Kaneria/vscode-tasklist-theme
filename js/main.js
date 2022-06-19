@@ -21,6 +21,17 @@ $( document ).ready(function() {
 
 });
 
+$(document).keypress(function(e){
+    if(e.which == 13)
+    {
+        if($("#add_item_list").hasClass("d-none")){
+            $("#update_item_list").click();
+        }else if($("#update_item_list").hasClass("d-none")){
+            $("#add_item_list").click();
+        }
+    }
+}); 
+
 function random_number(){
     return (Math.floor(Math.random() * 1000) + 1).toString()+Date.now()+(Math.floor(Math.random() * 1000) + 1).toString();
 }
