@@ -290,35 +290,45 @@ function generate_html_of_list(ele){
             <div style="display:none" class="col-12">
                 <label>${ele.id}</label>
             </div>
-            <div class="col-12 d-flex main_heading_task_list">
-                <div class="col-5">
+            <div class="col-12 row">
+                <div class="col-3">
                     <label><b>${ele.title}</b></label>
                 </div>
-                <div class="form-group d-flex">
-                    <select onChange="update_status(${ele.id},this.options[this.selectedIndex].value)" class="btn btn-sm form-control-sm bg-light">
-                        <option ${ele.status=="1"?'Selected':''} value="1">Complete - ✔️</option>
-                        <option ${ele.status=="2"?'Selected':''} value="2">In Progress - 🚀</option>
-                        <option ${ele.status=="3"?'Selected':''} value="3">In Complete - ⌛</option>
-                        <option ${ele.status=="4"?'Selected':''} value="4">Hold - 🛑</option>
-                    </select>
-                    <input onchange="update_tag(${ele.id},this.value)"  class="btn btn-sm bg-white form-control-sm" value="${ele.tag}" />
-                    <button class="btn btn-primary" onclick="edit(${ele.id})">📝</button>
-                    <button class="btn btn-danger" onclick="remove(${ele.id})">❌</button>
+                <div class="col-2 form-group">
+                    <input onchange="update_tag(${ele.id},this.value)"  class="btn btn-sm bg-white form-control-sm w-100" value="${ele.tag}" />
                 </div>
-            </div>
-            <div class="mt-3 col-12 d-flex main_description_task_list">
-                <div class="col-5">
-                    <label>${ele.description}</label>
-                </div>
-                <div class="form-group d-flex">
-                    <select onChange="update_priority(${ele.id},this.options[this.selectedIndex].value)" class="btn btn-sm form-control-sm bg-light">
+                <div class="col-3 form-group">
+                    <select onChange="update_priority(${ele.id},this.options[this.selectedIndex].value)" class="btn btn-sm form-control-sm bg-light w-100">
                         <option ${ele.priority==""?'Selected':''} value="">Select Priority</option>
                         <option ${ele.priority=="3"?'Selected':''} value="3">High - ⏫</option>
                         <option ${ele.priority=="2"?'Selected':''} value="2">Med - ➖</option>
                         <option ${ele.priority=="1"?'Selected':''} value="1">Low - ⏬</option>
                     </select>
-                    <input  class="btn btn-sm bg-light form-control-sm" type="${ele.start_date!=""?"datetime-local":"text"}" placeholder="Start Date" value="${ele.start_date}" onclick="(this.type='datetime-local');this.showPicker()" onchange="update_start_date(${ele.id},this.value)" />
-                    <input  class="btn btn-sm bg-light form-control-sm" type="${ele.end_date!=""?"datetime-local":"text"}" placeholder="End Date" value="${ele.end_date}" onclick="(this.type='datetime-local');this.showPicker()" onchange="update_end_date(${ele.id},this.value)" />
+                </div>
+                <div class="col-3 form-group">
+                    <select onChange="update_status(${ele.id},this.options[this.selectedIndex].value)" class="btn btn-sm form-control-sm bg-light w-100">
+                        <option ${ele.status=="1"?'Selected':''} value="1">Complete - ✔️</option>
+                        <option ${ele.status=="2"?'Selected':''} value="2">In Progress - 🚀</option>
+                        <option ${ele.status=="3"?'Selected':''} value="3">In Complete - ⌛</option>
+                        <option ${ele.status=="4"?'Selected':''} value="4">Hold - 🛑</option>
+                    </select>
+                </div>
+                <div class="col-1 form-group">
+                    <button class="btn btn-primary w-100" onclick="edit(${ele.id})">📝</button>
+                </div>
+            </div>
+            <div class="mt-3 col-12 row">
+                <div class="col-5">
+                    <label>${ele.description}</label>
+                </div>
+                <div class="col-3">
+                    <input  class="btn btn-sm bg-light form-control-sm  w-100" type="${ele.start_date!=""?"datetime-local":"text"}" placeholder="Start Date" value="${ele.start_date}" onclick="(this.type='datetime-local');this.showPicker()" onchange="update_start_date(${ele.id},this.value)" />
+                </div>
+                <div class="col-3">
+                    <input  class="btn btn-sm bg-light form-control-sm w-100" type="${ele.end_date!=""?"datetime-local":"text"}" placeholder="End Date" value="${ele.end_date}" onclick="(this.type='datetime-local');this.showPicker()" onchange="update_end_date(${ele.id},this.value)" />
+                </div>
+                <div class="col-1">
+                    <button class="btn btn-danger w-100" onclick="remove(${ele.id})">❌</button>
                 </div>
             </div>
         </li>

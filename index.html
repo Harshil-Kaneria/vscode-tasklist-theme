@@ -17,34 +17,41 @@
         	<div class="form-group">
                 <div class="row">
                     
-                    <div class="col-6">
-                        <input type="text" class="form-control" id="title_text" placeholder="Enter Task Title Here ">
-                    </div>
-                    <div class="col-6 form-group">
-                        <input  class="btn bg-white form-control-sm" id="tag_text" value="" placeholder="Tag (Optional)" />
-                        <select id="priority_id" class="btn form-control-sm  bg-light">
-                            <option value=""  selected>Select Priority</option>
-                            <option value="3" >High - ⏫</option>
-                            <option value="2" >Med - ➖</option>
-                            <option value="1" >Low - ⏬</option>
-                        </select>
-                        <select id="status_id" class="btn form-control-sm bg-light">
-                            <option value="1">Complete - ✔️</option>
-                            <option value="2">In Progress - 🚀</option>
-                            <option value="3" selected>In Complete - ⌛</option>
-                            <option value="4">Hold - 🛑</option>
-                        </select>
-                    </div>
+                        <div class="col-3">
+                            <input type="text" class="form-control w-100" id="title_text" placeholder="Enter Task Title Here ">
+                        </div>
 
-                    <hr>
-                    
-                    <div class="col-6">
-                        <textarea  class="form-control" style="min-width: 100%" id="description_text" placeholder="Enter Task More Details Here (Optional) "></textarea>
-                    </div>
-                    <div class="col-6 form-group">
-                        <input id="start_date" class="btn btn-sm bg-light form-control-sm" type="text" placeholder="Start Date (Optional)" onclick="(this.type='datetime-local');this.showPicker()"/>
-                        <input id="end_date" class="btn btn-sm bg-light form-control-sm" type="text" placeholder="End Date (Optional)" onclick="(this.type='datetime-local');this.showPicker()"/>
-                    </div>
+                        <div class="col-3 form-group">
+                            <input  class="btn bg-white form-control-sm w-100" id="tag_text" value="" placeholder="Tag (Optional)" />
+                        </div>
+                        <div class="col-3 form-group">
+                            <select id="priority_id" class="btn form-control-sm  bg-light w-100">
+                                <option value=""  selected>Select Priority</option>
+                                <option value="3" >High - ⏫</option>
+                                <option value="2" >Med - ➖</option>
+                                <option value="1" >Low - ⏬</option>
+                            </select>
+                        </div>
+                        <div class="col-3 form-group">
+                            <select id="status_id" class="btn form-control-sm bg-light w-100">
+                                <option value="1">Complete - ✔️</option>
+                                <option value="2">In Progress - 🚀</option>
+                                <option value="3" selected>In Complete - ⌛</option>
+                                <option value="4">Hold - 🛑</option>
+                            </select>
+                        </div>
+
+                        <hr>
+                        
+                        <div class="col-6">
+                            <textarea  class="form-control w-100" style="min-width: 100%" id="description_text" placeholder="Enter Task More Details Here (Optional) "></textarea>
+                        </div>
+                        <div class="col-3 form-group">
+                            <input id="start_date" class="btn btn-sm bg-light form-control-sm w-100" type="text" placeholder="Start Date (Optional)" onclick="(this.type='datetime-local');this.showPicker()"/>
+                        </div>
+                        <div class="col-3 form-group">
+                            <input id="end_date" class="btn btn-sm bg-light form-control-sm w-100" type="text" placeholder="End Date (Optional)" onclick="(this.type='datetime-local');this.showPicker()"/>
+                        </div>
 
                 </div>
         	</div>
