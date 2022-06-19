@@ -77,7 +77,7 @@ function update_item_list(){
         }
     })
     Update_Main_Data_File();
-    reset_entry_form();
+    clear_update_list();
 }
 
 function clear_full_list(){
