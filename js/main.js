@@ -244,7 +244,11 @@ function update_end_date(id,value){
     Update_Main_Data_File()
 }
 
-function Update_Main_Data_File(){
+function Update_Main_Data_File(seach_text=""){
+
+    if(seach_text!=""){
+        
+    }
 
     var data = MainDataArray;
     localStorage.removeItem('todoList');
@@ -278,13 +282,18 @@ function moveArrayItemToNewIndex(arr, old_index, new_index) {
     return arr; 
 };
 
+function search_text(){
+    var seach_value = $("#search_text").val();
+    Update_Main_Data_File(`seach_value`);
+}
+
 function generate_html_of_list(ele){
 
     let div =  `
     
         ${ele.status=="1"?'<li class="alert alert-success done row ">':''}
         ${ele.status=="2"?'<li class="alert alert-warning row ">':''}
-        ${ele.status=="3"?'<li class="alert alert-danger row ">':''}
+        ${ele.status=="3"?'<li class="alert alert-danger row">':''}
         ${ele.status=="4"?'<li class="alert alert-secondary row ">':''}
 
             <div style="display:none" class="col-12">
@@ -314,12 +323,12 @@ function generate_html_of_list(ele){
                     </select>
                 </div>
                 <div class="col-1 form-group">
-                    <button class="btn btn-primary w-100" onclick="edit(${ele.id})">📝</button>
+                    <button class="btn btn-sm btn-primary w-100" onclick="edit(${ele.id})">📝</button>
                 </div>
             </div>
             <div class="mt-3 col-12 row">
                 <div class="col-5">
-                    <label>${ele.description}</label>
+                    <label class="description_text">${ele.description}</label>
                 </div>
                 <div class="col-3">
                     <input  class="btn btn-sm bg-light form-control-sm  w-100" type="${ele.start_date!=""?"datetime-local":"text"}" placeholder="Start Date" value="${ele.start_date}" onclick="(this.type='datetime-local');this.showPicker()" onchange="update_start_date(${ele.id},this.value)" />
@@ -328,7 +337,7 @@ function generate_html_of_list(ele){
                     <input  class="btn btn-sm bg-light form-control-sm w-100" type="${ele.end_date!=""?"datetime-local":"text"}" placeholder="End Date" value="${ele.end_date}" onclick="(this.type='datetime-local');this.showPicker()" onchange="update_end_date(${ele.id},this.value)" />
                 </div>
                 <div class="col-1">
-                    <button class="btn btn-danger w-100" onclick="remove(${ele.id})">❌</button>
+                    <button class="btn btn-sm btn-danger w-100" onclick="remove(${ele.id})">❌</button>
                 </div>
             </div>
         </li>

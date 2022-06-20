@@ -12,7 +12,7 @@
     <body class="bg-dark">
     <div id="main_data_list" class="d-none"></div>
     <div class="container">
-    	<h2 class="text-center text-white">Todo List App</h2>
+    	<h2 class="text-center text-white animation">Task List</h2>
             <hr class="bg-light">
         	<div class="form-group">
                 <div class="row">
@@ -56,17 +56,18 @@
                 </div>
         	</div>
             <hr class="bg-info">
-            <div class="row mt-2">
+            <div class="row">
                 <div class="col-12">
-                    <button onclick="add_item_list()" id="add_item_list" class="btn btn-primary mt-1">➕ Add To List</button>
-                    <button onclick="clear_full_list()" id="clear_full_list" class="btn btn-danger mt-1">⛔ Clear Todo List</button>
+                    <button onclick="add_item_list()" id="add_item_list" class="btn btn-primary">➕ Add To List</button>
+                    <button onclick="clear_full_list()" id="clear_full_list" class="btn btn-danger">⛔ Clear Todo List</button>
 
-                    <button onclick="update_item_list()" data-id="" id="update_item_list" class="btn btn-primary mt-1 d-none">📝 Update</button>
-                    <button onclick="clear_update_list()" id="clear_update_list" class="btn btn-danger mt-1 d-none">⛔ Clear</button>
+                    <button onclick="update_item_list()" data-id="" id="update_item_list" class="btn btn-primary d-none">📝 Update</button>
+                    <button onclick="clear_update_list()" id="clear_update_list" class="btn btn-danger d-none">⛔ Clear</button>
+
+                    <input type="text" class="btn bg-white" id="search_text" onkeyup="search_text()" placeholder="Search ..."/>
+
                 </div>
             </div>
-        <hr class="bg-danger">
-        <h3 class="text-warning mt-2">Todo List</h3>
         <hr class="bg-warning">
         <ul id="todoList" class="container">
         </ul>
