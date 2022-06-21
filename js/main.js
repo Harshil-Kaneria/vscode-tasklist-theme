@@ -160,6 +160,7 @@ function reset_entry_form(){
     $("#end_date").val("");
     $('#start_date').attr('type', 'text')
     $('#end_date').attr('type', 'text')
+    $("#search_text").val("");
 }
 
 function clear_update_list(){
@@ -244,11 +245,7 @@ function update_end_date(id,value){
     Update_Main_Data_File()
 }
 
-function Update_Main_Data_File(seach_text=""){
-
-    if(seach_text!=""){
-        
-    }
+function Update_Main_Data_File(){
 
     var data = MainDataArray;
     localStorage.removeItem('todoList');
@@ -257,13 +254,33 @@ function Update_Main_Data_File(seach_text=""){
 
 }
 
-function list_html(){
+function list_html(search_text=""){
 
     $("#todoList").html("");
     var list = localStorage.getItem('todoList');
     if(list != null){
         todos = JSON.parse(list);
         MainDataArray = todos;
+
+        if(search_text!=""){
+
+            // todos.forEach(function(ele){
+            //     delete ele['id']
+            //     delete ele['priority']
+            //     delete ele['status']
+            //     delete ele['start_date']
+            //     delete ele['end_date']
+            // })
+
+            SearchDataArray = todos.filter(obj => Object.values(obj).some(val => val.includes(search_text)));
+            
+            SearchDataArray.forEach(function(ele){
+                $("#todoList").append(generate_html_of_list(ele))
+            })
+
+            return 0;
+        }
+
         MainDataArray.forEach(function(ele){
             $("#todoList").append(generate_html_of_list(ele))
         })
@@ -284,7 +301,7 @@ function moveArrayItemToNewIndex(arr, old_index, new_index) {
 
 function search_text(){
     var seach_value = $("#search_text").val();
-    Update_Main_Data_File(`seach_value`);
+    list_html(`${seach_value}`);
 }
 
 function generate_html_of_list(ele){
