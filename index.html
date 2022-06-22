@@ -66,6 +66,23 @@
 
                     <input type="text" class="btn bg-white" id="search_text" onkeyup="search_text()" placeholder="Search ..."/>
 
+                    <select id="search_priority_id" onchange="search_text()" class="btn bg-white">
+                        <option value=""  selected>Filter By Priority</option>
+                        <option value="3" >High - ⏫</option>
+                        <option value="2" >Med - ➖</option>
+                        <option value="1" >Low - ⏬</option>
+                    </select>
+
+                    <select id="search_status_id" onchange="search_text()" class="btn bg-white">
+                        <option value=""  selected>Filter By Status</option>
+                        <option value="1">Complete - ✔️</option>
+                        <option value="2">In Progress - 🚀</option>
+                        <option value="3">In Complete - ⌛</option>
+                        <option value="4">Hold - 🛑</option>
+                    </select>
+                    
+                    <button onclick="location.reload()" class="btn btn-warning">🔄 Reset Filter</button>
+
                 </div>
             </div>
         <hr class="bg-warning">

@@ -254,7 +254,7 @@ function Update_Main_Data_File(){
 
 }
 
-function list_html(search_text=""){
+function list_html(search_text="",search_priority_id="",search_status_id=""){
 
     $("#todoList").html("");
     var list = localStorage.getItem('todoList');
@@ -262,18 +262,41 @@ function list_html(search_text=""){
         todos = JSON.parse(list);
         MainDataArray = todos;
 
+        if(search_priority_id!=""){
+
+            var regex = new RegExp(`^${search_priority_id}`,'gi');
+            SearchDataArray = todos.filter(ele => {
+                return ele.priority.match(regex)
+            });
+
+            SearchDataArray.forEach(function(ele){
+                $("#todoList").append(generate_html_of_list(ele))
+            })
+
+            return 0;
+        }
+
+        if(search_status_id!=""){
+
+            var regex = new RegExp(`^${search_status_id}`,'gi');
+            SearchDataArray = todos.filter(ele => {
+                return ele.status.match(regex)
+            });
+
+            SearchDataArray.forEach(function(ele){
+                $("#todoList").append(generate_html_of_list(ele))
+            })
+
+            return 0;   
+        }
+
         if(search_text!=""){
 
-            // todos.forEach(function(ele){
-            //     delete ele['id']
-            //     delete ele['priority']
-            //     delete ele['status']
-            //     delete ele['start_date']
-            //     delete ele['end_date']
-            // })
+            var regex = new RegExp(`^${search_text}`,'gi');
+            SearchDataArray = todos.filter(ele => {
+                return ele.title.match(regex) || ele.description.match(regex) || ele.tag.match(regex)
+            });
 
-            SearchDataArray = todos.filter(obj => Object.values(obj).some(val => val.includes(search_text)));
-            
             SearchDataArray.forEach(function(ele){
                 $("#todoList").append(generate_html_of_list(ele))
             })
@@ -301,7 +324,9 @@ function moveArrayItemToNewIndex(arr, old_index, new_index) {
 
 function search_text(){
     var seach_value = $("#search_text").val();
-    list_html(`${seach_value}`);
+    var search_priority_id = $("#search_priority_id").val();
+    var search_status_id = $("#search_status_id").val();
+    list_html(`${seach_value}`,`${search_priority_id}`,`${search_status_id}`);
 }
 
 function generate_html_of_list(ele){
