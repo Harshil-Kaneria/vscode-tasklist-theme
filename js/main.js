@@ -161,6 +161,8 @@ function reset_entry_form(){
     $('#start_date').attr('type', 'text')
     $('#end_date').attr('type', 'text')
     $("#search_text").val("");
+    $("#search_priority_id").val("");
+    $("#search_status_id").val("");
 }
 
 function clear_update_list(){
@@ -262,51 +264,37 @@ function list_html(search_text="",search_priority_id="",search_status_id=""){
         todos = JSON.parse(list);
         MainDataArray = todos;
 
-        if(search_priority_id!=""){
-
-            var regex = new RegExp(`^${search_priority_id}`,'gi');
-            SearchDataArray = todos.filter(ele => {
-                return ele.priority.match(regex)
-            });
-
-            SearchDataArray.forEach(function(ele){
-                $("#todoList").append(generate_html_of_list(ele))
-            })
-
-            return 0;
-        }
-
-        if(search_status_id!=""){
-
-            var regex = new RegExp(`^${search_status_id}`,'gi');
-            SearchDataArray = todos.filter(ele => {
-                return ele.status.match(regex)
-            });
-
-            SearchDataArray.forEach(function(ele){
-                $("#todoList").append(generate_html_of_list(ele))
-            })
-
-            return 0;   
-        }
-
-        if(search_text!=""){
-
-            var regex = new RegExp(`^${search_text}`,'gi');
-            SearchDataArray = todos.filter(ele => {
-                return ele.title.match(regex) || ele.description.match(regex) || ele.tag.match(regex)
-            });
+        if(search_priority_id!="" || search_status_id!="" || search_text!=""){
+            if(search_priority_id!=""){
+                var regex = new RegExp(`^${search_priority_id}`,'gi');
+                todos = todos.filter(ele => {
+                    return ele.priority.match(regex)
+                });
+            }
+            if(search_status_id!=""){
+                var regex = new RegExp(`^${search_status_id}`,'gi');
+                todos = todos.filter(ele => {
+                    return ele.status.match(regex)
+                });
+            }
+            if(search_text!=""){
+                var regex = new RegExp(`^${search_text}`,'gi');
+                todos = todos.filter(ele => {
+                    return ele.title.match(regex) || ele.description.match(regex) || ele.tag.match(regex)
+                });
+            }
+            SearchDataArray = todos 
 
             SearchDataArray.forEach(function(ele){
                 $("#todoList").append(generate_html_of_list(ele))
             })
-
             return 0;
         }
 
         MainDataArray.forEach(function(ele){
             $("#todoList").append(generate_html_of_list(ele))
         })
+        reset_entry_form()
     }
 
 }

@@ -56,33 +56,39 @@
                 </div>
         	</div>
             <hr class="bg-info">
-            <div class="row">
-                <div class="col-12">
-                    <button onclick="add_item_list()" id="add_item_list" class="btn btn-primary">➕ Add To List</button>
-                    <button onclick="clear_full_list()" id="clear_full_list" class="btn btn-danger">⛔ Clear Todo List</button>
+            <div class="form-group row">
+                <div class="col-2">
+                    <button onclick="add_item_list()" id="add_item_list" class="btn btn-sm btn-primary form-control-sm w-100">➕ Add To List</button>
 
-                    <button onclick="update_item_list()" data-id="" id="update_item_list" class="btn btn-primary d-none">📝 Update</button>
-                    <button onclick="clear_update_list()" id="clear_update_list" class="btn btn-danger d-none">⛔ Clear</button>
+                    <button onclick="update_item_list()" data-id="" id="update_item_list" class="btn btn-sm btn-primary w-100 form-control-sm d-none">📝 Update</button>
+                </div>
+                <div class="col-2">
+                    <button onclick="clear_full_list()" id="clear_full_list" class="btn btn-sm btn-danger form-control-sm w-100">⛔ Clear Todo List</button>
 
-                    <input type="text" class="btn bg-white" id="search_text" onkeyup="search_text()" placeholder="Search ..."/>
-
-                    <select id="search_priority_id" onchange="search_text()" class="btn bg-white">
+                    <button onclick="clear_update_list()" id="clear_update_list" class="btn btn-sm btn-danger form-control-sm w-100 d-none">⛔ Clear</button>
+                </div>
+                <div class="col-2">
+                    <button onclick="reset_entry_form();list_html();" class="btn btn-sm btn-warning form-control-sm w-100">↻ Reset Filter</button>
+                </div>
+                <div class="col-2">
+                    <input type="text" class="btn btn-sm form-control-sm w-100 bg-white" id="search_text" onkeyup="search_text()" placeholder="Search ..."/>
+                </div>
+                <div class="col-2">
+                    <select id="search_priority_id" onchange="search_text()" class="btn btn-sm form-control-sm w-100 bg-white">
                         <option value=""  selected>Filter By Priority</option>
                         <option value="3" >High - ⏫</option>
                         <option value="2" >Med - ➖</option>
                         <option value="1" >Low - ⏬</option>
                     </select>
-
-                    <select id="search_status_id" onchange="search_text()" class="btn bg-white">
+                </div>
+                <div class="col-2">
+                    <select id="search_status_id" onchange="search_text()" class="btn btn-sm form-control-sm w-100 bg-white">
                         <option value=""  selected>Filter By Status</option>
                         <option value="1">Complete - ✔️</option>
                         <option value="2">In Progress - 🚀</option>
                         <option value="3">In Complete - ⌛</option>
                         <option value="4">Hold - 🛑</option>
                     </select>
-                    
-                    <button onclick="location.reload()" class="btn btn-warning">🔄 Reset Filter</button>
-
                 </div>
             </div>
         <hr class="bg-warning">
