@@ -30,6 +30,13 @@
         transform: scale(1);
     }
 }
+@keyframes pulse-anim{
+    0%{box-shadow:#f8d7da 0 0 0 0}
+    100%{box-shadow:#f8d7da00 0 0 0 10px}
+}
 .animation{
     animation: attention 5s ease infinite;
+}
+.pulse{
+    animation: 2s pulse-anim infinite;
 }

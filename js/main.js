@@ -323,7 +323,7 @@ function generate_html_of_list(ele){
     
         ${ele.status=="1"?'<li class="alert alert-success done row ">':''}
         ${ele.status=="2"?'<li class="alert alert-warning row ">':''}
-        ${ele.status=="3"?'<li class="alert alert-danger row">':''}
+        ${ele.status=="3"? `<li class="alert alert-danger row ${(new Date().toDateString()==new Date(ele.end_date).toDateString() || (new Date().getDate() - new Date(ele.end_date).getDate())=="-1" )? 'pulse' : ''} "> ` :''}
         ${ele.status=="4"?'<li class="alert alert-secondary row ">':''}
 
             <div style="display:none" class="col-12">
